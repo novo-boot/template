@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.novo.demo</groupId>
+        <artifactId>demo</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.novo.demo</groupId>
+    <artifactId>ceic-im-facade-app</artifactId>
+    <packaging>jar</packaging>
+    <name>Demo App</name>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>MMddHHmmss</maven.build.timestamp.format>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+
+        <!--Project modules-->
+        <dependency>
+            <groupId>com.novo.demo</groupId>
+            <artifactId>ceic-im-facade-infrastructure</artifactId>
+        </dependency>
+        <!--Project modules-->
+
+        <!--Novo modules-->
+        <!-- microservices     -->
+        <dependency>
+            <groupId>com.novo.boot</groupId>
+            <artifactId>novo-web-microservices</artifactId>
+        </dependency>
+        <!-- rocketmq -->
+        <dependency>
+            <groupId>com.novo.boot</groupId>
+            <artifactId>novo-web-mq-rocketmq</artifactId>
+        </dependency>
+        <!-- webservice -->
+        <dependency>
+            <groupId>com.novo.boot</groupId>
+            <artifactId>novo-web-webservice</artifactId>
+        </dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>com.novo.boot</groupId>
+            <artifactId>novo-boot-smoke-tests</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--Novo modules End-->
+
+    </dependencies>
+</project>

@@ -1,0 +1,122 @@
+# Tomcat
+server:
+  #开启优雅停机
+  shutdown: graceful
+  port: 18080
+  max-http-header-size: 80KB
+  tomcat:
+    # 等待队列
+    accept-count: 1000
+    # 最多连接数
+    max-connections: 10000
+    # 最大线程数 1核2G内存，线程数建议值200；4核8G内存， 线程数建议值800
+    threads.max: 100
+    # 最小空闲线程
+    threads.min-spare: 100
+    # 连接超时
+    connection-timeout: 10000
+    uri-encoding: utf-8
+  servlet:
+    context-path: /demo
+
+# actuator 监控配置
+management:
+  security:
+    enabled: false
+  server:
+    port: 48080
+  endpoints:
+    enabled-by-default: false #关闭监控
+    web:
+      exposure:
+        #默认值访问health,info端点  用*可以包含全部端点
+        include: "*"
+      #修改访问路径 2.0之前默认是/; 2.0默认是/actuator可以通过这个属性值修改
+      base-path: /actuator
+  endpoint:
+    shutdown:
+      enabled: true #打开shutdown端点
+    health:
+      show-details: always #获得健康检查中所有指标的详细信息
+
+#  Logging common
+logging:
+#  config: classpath:logback.xml
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: debug
+      baomidou: debug
+    org:
+      apache:
+        shardingsphere: debug
+    RocketmqClient: ERROR
+    io:
+      netty: ERROR
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: demo
+
+
+
+---
+#开发环境
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+  config:
+    activate:
+      on-profile: dev
+
+
+---
+#测试环境
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos-2023.com
+        ip: 127.0.0.1
+        port: ${server.port}
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        username: nacos
+        password: nacos-2023.com
+  config:
+    activate:
+      on-profile: test
+
+---
+#正式环境
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-dbts-svc.ice.svc.cluster.local:8849
+        username: nacos
+        password: NaCos_2023-10_11%@
+      config:
+        server-addr: nacos-dbts-svc.ice.svc.cluster.local:8849
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        username: nacos
+        password: NaCos_2023-10_11%@
+  config:
+    activate:
+      on-profile: prod
+
+

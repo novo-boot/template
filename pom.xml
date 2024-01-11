@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.novo.boot</groupId>
+        <artifactId>novo-parent</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </parent>
+    <groupId>com.novo.demo</groupId>
+    <artifactId>demo</artifactId>
+    <packaging>pom</packaging>
+    <version>${revision}</version>
+    <name>Demo</name>
+
+    <modules>
+        <module>demo-common</module>
+        <module>demo-domain</module>
+        <module>demo-infrastructure</module>
+        <module>demo-app</module>
+        <module>demo-interfaces</module>
+        <module>start</module>
+    </modules>
+
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <maven.build.timestamp.format>MMddHHmmss</maven.build.timestamp.format>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <revision>1.0.1-SNAPSHOT</revision>
+        <main.basedir>${basedir}</main.basedir>
+        <com.novo.boot.version>1.0.2-SNAPSHOT</com.novo.boot.version>
+    </properties>
+
+    <dependencyManagement>
+
+        <dependencies>
+            <!--Project modules-->
+            <dependency>
+                <groupId>com.novo.demo</groupId>
+                <artifactId>ceic-im-facade-interfaces</artifactId>
+                <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.novo.demo</groupId>
+                <artifactId>ceic-im-facade-app</artifactId>
+                <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.novo.demo</groupId>
+                <artifactId>ceic-im-facade-domain</artifactId>
+                <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.novo.demo</groupId>
+                <artifactId>ceic-im-facade-infrastructure</artifactId>
+                <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.novo.demo</groupId>
+                <artifactId>ceic-im-facade-common</artifactId>
+                <version>1.0.1-SNAPSHOT</version>
+            </dependency>
+            <!--Project modules End-->
+
+
+            <!--Novo modules-->
+            <!-- common-security    -->
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-common-core</artifactId>
+                <version>${com.novo.boot.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-common-security</artifactId>
+                <version>${com.novo.boot.version}</version>
+            </dependency>
+            <!-- microservices     -->
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-web-feign</artifactId>
+                <version>${com.novo.boot.version}</version>
+            </dependency>
+            <!-- microservices     -->
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-web-microservices</artifactId>
+                <version>${com.novo.boot.version}</version>
+            </dependency>
+            <!-- rocketmq -->
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-web-mq-rocketmq</artifactId>
+                <version>${com.novo.boot.version}</version>
+            </dependency>
+            <!-- webservice -->
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-web-webservice</artifactId>
+                <version>${com.novo.boot.version}</version>
+            </dependency>
+            <!-- test -->
+            <dependency>
+                <groupId>com.novo.boot</groupId>
+                <artifactId>novo-boot-smoke-tests</artifactId>
+                <version>1.0.2-SNAPSHOT</version>
+                <scope>test</scope>
+            </dependency>
+            <!--Novo modules End-->
+
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>private</id>
+            <name>private nexus</name>
+            <url>http://10.126.15.133:8005/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>private</id>
+            <name>private nexus</name>
+            <url>http://10.126.15.133:8005/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+</project>

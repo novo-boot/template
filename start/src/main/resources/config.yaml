@@ -1,0 +1,175 @@
+#dataSources:
+#  iworker_global_0:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    jdbcUrl: jdbc:mysql://10.126.15.81:9101/iworker_global?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: A@123.com
+#  iworker_inside_0:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    jdbcUrl: jdbc:mysql://10.126.15.81:9101/iworker_inside?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: A@123.com
+#    connection-timeout: 6000
+#    validation-timeout: 6000
+#    idle-timeout: 30000
+#    leak-detection-threshold: 12000
+#    # 大于 30000 <= max-lifetime 否则 connection-test-query 不生效
+#    keepalive-time: 40000
+#    max-lifetime: 600000
+#    max-pool-size: 20
+#    min-idle: 10
+#    initialization-fail-timeout: 6000
+#    connection-init-sql: select 1
+#    connection-test-query: select 1
+#    transaction-isolation-name: TRANSACTION_READ_COMMITTED
+#    is-auto-commit: true
+#    is-read-only: false
+#    is-isolate-internal-queries: false
+#    is-register-mbeans: false
+#    is-allow-pool-suspension: false
+#    health-check-properties:
+#      enabled: true
+#      connection-timeout: 6000
+#      validation-timeout: 6000
+#      validation-query: select 1
+#      health-check-registry-name: healthCheckRegistry
+#    data-source-properties: #以下属性（默认不会引入）
+#      serverTimezone: Asia/Shanghai
+#      characterEncoding: utf-8
+#      useUnicode: true
+#      useSSL: false
+#      autoReconnect: true
+#      cachePrepStmts: true
+#      prepStmtCacheSize: 250
+#      prepStmtCacheSqlLimit: 2048
+#      useServerPrepStmts: true
+#      useLocalSessionState: true
+#      rewriteBatchedStatements: true
+#      cacheResultSetMetadata: true
+#      cacheServerConfiguration: true
+#      elideSetAutoCommits: true
+#      maintainTimeStats: false
+#      allowPublicKeyRetrieval: true
+#  iworker_global_0_slave:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    jdbcUrl: jdbc:mysql://10.126.15.81:9101/iworker_global?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: A@123.com
+#  iworker_inside_0_slave:
+#    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    jdbcUrl: jdbc:mysql://10.126.15.81:9101/iworker_inside?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull
+#    username: root
+#    password: A@123.com
+#    connection-timeout: 6000
+#    validation-timeout: 6000
+#    idle-timeout: 30000
+#    leak-detection-threshold: 12000
+#    # 大于 30000 <= max-lifetime 否则 connection-test-query 不生效
+#    keepalive-time: 40000
+#    max-lifetime: 600000
+#    max-pool-size: 20
+#    min-idle: 10
+#    initialization-fail-timeout: 6000
+#    connection-init-sql: select 1
+#    connection-test-query: select 1
+#    transaction-isolation-name: TRANSACTION_READ_COMMITTED
+#    is-auto-commit: true
+#    is-read-only: false
+#    is-isolate-internal-queries: false
+#    is-register-mbeans: false
+#    is-allow-pool-suspension: false
+#    health-check-properties:
+#      enabled: true
+#      connection-timeout: 6000
+#      validation-timeout: 6000
+#      validation-query: select 1
+#      health-check-registry-name: healthCheckRegistry
+#    data-source-properties: #以下属性（默认不会引入）
+#      serverTimezone: Asia/Shanghai
+#      characterEncoding: utf-8
+#      useUnicode: true
+#      useSSL: false
+#      autoReconnect: true
+#      cachePrepStmts: true
+#      prepStmtCacheSize: 250
+#      prepStmtCacheSqlLimit: 2048
+#      useServerPrepStmts: true
+#      useLocalSessionState: true
+#      rewriteBatchedStatements: true
+#      cacheResultSetMetadata: true
+#      cacheServerConfiguration: true
+#      elideSetAutoCommits: true
+#      maintainTimeStats: false
+#      allowPublicKeyRetrieval: true
+#
+#rules:
+##  - !SHARDING
+##    tables:
+##      ice_test:
+##        # 由数据源名 + 表名组成，以小数点分隔。多个表以逗号分隔，支持行表达式。缺省表示使用已知数据源与逻辑表名称生成数据节点，
+##        # 用于广播表（即每个库中都需要一个同样的表用于关联查询，多为字典表）或只分库不分表且所有库的表结构完全一致的情况
+##        actualDataNodes: test_$->{0..1}.ice_test_$->{0..1}
+##        # 分库策略，缺省表示使用默认分库策略，以下的分片策略只能选其一
+##        databaseStrategy:
+##          # 用于单分片键的标准分片场景
+##          standard:
+##            # 分片列名称
+##            shardingColumn: link_id
+##            # 分片算法名称
+##            shardingAlgorithmName: ice-link-id-inline
+##            # 用于多分片键的复合分片场景
+##            #         complex:
+##            # 分片列名称，多个列以逗号分隔
+##            #           shardingColumns:
+##            # 分片算法名称
+##            #           shardingAlgorithmName:
+##            # Hint 分片策略
+##            #         hint:
+##            # 分片算法名称
+##          #           shardingAlgorithmName:
+##          # 不分片
+##          #         none:
+##          # 分表策略，同分库策略
+##        tableStrategy:
+##          standard:
+##            shardingColumn: msg_id
+##            shardingAlgorithmName: ice-msg-id-inline
+##
+##    shardingAlgorithms:
+##      ice-link-id-inline:
+##        type: INLINE
+##        props:
+##          algorithm-expression: test_$->{link_id % 2}
+##          allow-range-query-with-inline-sharding: true
+##      ice-msg-id-inline:
+##        type: INLINE
+##        props:
+##          algorithm-expression: ice_test_$->{msg_id % 2}
+##          allow-range-query-with-inline-sharding: true
+#
+#
+#  - !READWRITE_SPLITTING
+#    dataSources:
+#      ice_test_0_query:
+#        staticStrategy:
+#          writeDataSourceName: iworker_global_0
+#          readDataSourceNames:
+#            - iworker_global_0_slave
+#        loadBalancerName: iworker_global-balance-algorithm
+#      ice_test_1_query:
+#        staticStrategy:
+#          writeDataSourceName: iworker_inside_0
+#          readDataSourceNames:
+#            - iworker_inside_0_slave
+#        loadBalancerName: iworker_inside-balance-algorithm
+#    loadBalancers:
+#      iworker_global-balance-algorithm:
+#        type: ROUND_ROBIN
+#      iworker_inside-balance-algorithm:
+#        type: ROUND_ROBIN
+#props:
+#  sql-show: true
